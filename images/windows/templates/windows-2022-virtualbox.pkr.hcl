@@ -14,7 +14,7 @@ variable "boot_wait" {
 
 variable "disk_size" {
   type    = string
-  default = "40960"
+  default = "256000"
 }
 
 variable "iso_checksum" {
@@ -327,9 +327,9 @@ build {
 
   provisioner "powershell" {
     scripts = [
-      "${path.root}/../scripts/build/Install-Docker.ps1",
-      "${path.root}/../scripts/build/Install-DockerWinCred.ps1",
-      "${path.root}/../scripts/build/Install-DockerCompose.ps1",
+     # "${path.root}/../scripts/build/Install-Docker.ps1",
+     # "${path.root}/../scripts/build/Install-DockerWinCred.ps1",
+     # "${path.root}/../scripts/build/Install-DockerCompose.ps1",
       "${path.root}/../scripts/build/Install-PowershellCore.ps1",
       "${path.root}/../scripts/build/Install-WebPlatformInstaller.ps1",
       "${path.root}/../scripts/build/Install-Runner.ps1"
@@ -358,7 +358,7 @@ build {
   provisioner "powershell" {
     pause_before = "2m0s"
     scripts      = [
-      "${path.root}/../scripts/build/Install-Wix.ps1",
+#      "${path.root}/../scripts/build/Install-Wix.ps1",
       "${path.root}/../scripts/build/Install-WDK.ps1",
       "${path.root}/../scripts/build/Install-VSExtensions.ps1",
       "${path.root}/../scripts/build/Install-AzureCli.ps1",
@@ -400,7 +400,7 @@ build {
       "${path.root}/../scripts/build/Install-Rust.ps1",
       "${path.root}/../scripts/build/Install-Sbt.ps1",
       "${path.root}/../scripts/build/Install-Chrome.ps1",
-      "${path.root}/../scripts/build/Install-EdgeDriver.ps1",
+#      "${path.root}/../scripts/build/Install-EdgeDriver.ps1",
       "${path.root}/../scripts/build/Install-Firefox.ps1",
       "${path.root}/../scripts/build/Install-Selenium.ps1",
       "${path.root}/../scripts/build/Install-IEWebDriver.ps1",
@@ -423,7 +423,14 @@ build {
       "${path.root}/../scripts/build/Install-Mercurial.ps1",
       "${path.root}/../scripts/build/Install-Zstd.ps1",
       "${path.root}/../scripts/build/Install-NSIS.ps1",
-      "${path.root}/../scripts/build/Install-Vcpkg.ps1", "${path.root}/../scripts/build/Install-PostgreSQL.ps1", "${path.root}/../scripts/build/Install-Bazel.ps1", "${path.root}/../scripts/build/Install-AliyunCli.ps1", "${path.root}/../scripts/build/Install-RootCA.ps1", "${path.root}/../scripts/build/Install-MongoDB.ps1", "${path.root}/../scripts/build/Install-CodeQLBundle.ps1", "${path.root}/../scripts/build/Configure-Diagnostics.ps1"]
+      "${path.root}/../scripts/build/Install-Vcpkg.ps1",
+      "${path.root}/../scripts/build/Install-PostgreSQL.ps1",
+      "${path.root}/../scripts/build/Install-Bazel.ps1",
+      "${path.root}/../scripts/build/Install-AliyunCli.ps1",
+      "${path.root}/../scripts/build/Install-RootCA.ps1",
+      "${path.root}/../scripts/build/Install-MongoDB.ps1",
+      "${path.root}/../scripts/build/Install-CodeQLBundle.ps1",
+      "${path.root}/../scripts/build/Configure-Diagnostics.ps1"]
   }
 
   provisioner "powershell" {
