@@ -1,1 +1,1 @@
-Install-ServiceFabricSDK.ps1
+#Install-ServiceFabricSDK.ps1

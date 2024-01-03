@@ -14,6 +14,55 @@
                 "3.12.*"
             ],
             "default": "3.9.*"
+        },
+        {
+            "name": "Python",
+            "url" : "https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json",
+            "arch": "x86",
+            "platform" : "win32",
+            "versions": [
+                "3.7.*",
+                "3.8.*",
+                "3.9.*",
+                "3.10.*",
+                "3.11.*",
+                "3.12.*"
+            ]
+        },
+        {
+            "name": "PyPy",
+            "arch": "x86",
+            "platform" : "win64",
+            "versions": [
+                "2.7",
+                "3.7",
+                "3.8",
+                "3.9",
+                "3.10"
+            ]
+        },
+        {
+            "name": "node",
+            "url" : "https://raw.githubusercontent.com/actions/node-versions/main/versions-manifest.json",
+            "arch": "x64",
+            "platform" : "win32",
+            "versions": [
+                "16.*",
+                "18.*",
+                "20.*"
+            ]
+        },
+        {
+            "name": "go",
+            "url" : "https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json",
+            "arch": "x64",
+            "platform" : "win32",
+            "versions": [
+                "1.19.*",
+                "1.20.*",
+                "1.21.*"
+            ],
+            "default": "1.20.*"
         }
     ],
     "powershellModules": [
@@ -56,8 +105,6 @@
         "signature": "72105B6D5F370B62FD5C82F1512F7AD7DEE5F2C0",
         "workloads": [
             "Microsoft.Component.VC.Runtime.UCRTSDK",
-            "Microsoft.Net.Component.4.8.1.SDK",
-            "Microsoft.Net.Component.4.8.1.TargetingPack",
             "Microsoft.VisualStudio.Component.Debugger.JustInTime",
             "Microsoft.VisualStudio.Component.VC.CLI.Support",
             "Microsoft.VisualStudio.Component.VC.CMake.Project",
@@ -84,16 +131,7 @@
             "Microsoft.VisualStudio.Component.Workflow",
             "Microsoft.VisualStudio.ComponentGroup.UWP.VC.v142",
             "Microsoft.VisualStudio.Workload.Data",
-            "Microsoft.VisualStudio.Workload.NativeDesktop",
-            "Microsoft.VisualStudio.Workload.Node",
-            "Microsoft.VisualStudio.Workload.Python",
-            "Microsoft.VisualStudio.Workload.Universal",
-            "Microsoft.VisualStudio.Workload.VisualStudioExtension"
-        ],
-        "vsix": [
-            "SSIS.MicrosoftDataToolsIntegrationServices",
-            "VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects",
-            "WixToolset.WixToolsetVisualStudio2022Extension"
+            "Microsoft.VisualStudio.Workload.NativeDesktop"
         ]
     },
     "docker": {

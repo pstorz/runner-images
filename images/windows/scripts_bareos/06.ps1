@@ -1,1 +1,1 @@
-wmic product where \"name like '%%microsoft azure powershell%%'\" call uninstall /nointeractive
+#wmic product where \"name like '%%microsoft azure powershell%%'\" call uninstall /nointeractive

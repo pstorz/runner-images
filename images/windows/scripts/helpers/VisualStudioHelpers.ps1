@@ -17,7 +17,7 @@ Function Install-VisualStudio {
 
     .PARAMETER RequiredComponents
         The list of required components. Required parameter.
-    
+
     .PARAMETER ExtraArgs
         The extra arguments to pass to the bootstrapper. Optional parameter.
     #>
