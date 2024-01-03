@@ -73,7 +73,7 @@ Write-Host "Enable long path behavior"
 Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' -Name 'LongPathsEnabled' -Value 1
 
 # Expand disk size of OS drive
-$driveLetter = "C"
-$size = Get-PartitionSupportedSize -DriveLetter $driveLetter
-Resize-Partition -DriveLetter $driveLetter -Size $size.SizeMax
-Get-Volume | Select-Object DriveLetter, SizeRemaining, Size | Sort-Object DriveLetter
+#$driveLetter = "C"
+#$size = Get-PartitionSupportedSize -DriveLetter $driveLetter
+#Resize-Partition -DriveLetter $driveLetter -Size $size.SizeMax
+#Get-Volume | Select-Object DriveLetter, SizeRemaining, Size | Sort-Object DriveLetter

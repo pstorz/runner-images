@@ -205,7 +205,7 @@ variable "vm_size" {
 source "virtualbox-iso" "vboximage" {
   boot_command         = ["<spacebar>"]
   boot_wait            = "${var.boot_wait}"
-  communicator         = "winrm"
+  communicator         = "ssh"
   disk_size            = "${var.disk_size}"
   guest_additions_mode = "disable"
   guest_os_type        = "Windows2019_64"
@@ -215,13 +215,21 @@ source "virtualbox-iso" "vboximage" {
   iso_url              = "${var.iso_url}"
   shutdown_command     = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
   shutdown_timeout     = "30m"
-  vboxmanage           = [["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"], ["modifyvm", "{{ .Name }}", "--firmware", "EFI"], ["storageattach", "{{ .Name }}", "--storagectl", "SATA Controller", "--type", "dvddrive", "--port", "3", "--medium", "/home/pstorz/git/packer-Win2022/scripts/uefi/gui/autounattend.iso"]]
+  vboxmanage           = [
+        ["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"],
+        ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"],
+        ["modifyvm", "{{ .Name }}", "--firmware", "EFI"],
+        ["storageattach", "{{ .Name }}", "--storagectl", "SATA Controller", "--type", "dvddrive", "--port", "3", "--medium", "../boot/autounattend.iso"]]
   vm_name              = "${var.vm_name}"
   winrm_insecure       = true
   winrm_password       = "${var.install_password}"
   winrm_timeout        = "4h"
   winrm_use_ssl        = true
   winrm_username       = "${var.install_user}"
+  ssh_username         = "${var.install_user}"
+  ssh_password         = "${var.install_password}"
+  ssh_timeout          = "1h"
+  ssh_clear_authorized_keys = true
 }
 
 
@@ -339,8 +347,8 @@ build {
   }
 
   provisioner "windows-restart" {
-    check_registry        = true
-    restart_check_command = "powershell -command \"& {while ( (Get-WindowsOptionalFeature -Online -FeatureName Containers -ErrorAction SilentlyContinue).State -ne 'Enabled' ) { Start-Sleep 30; Write-Output 'InProgress' }}\""
+#    check_registry        = true
+#    restart_check_command = "powershell -command \"& {while ( (Get-WindowsOptionalFeature -Online -FeatureName Containers -ErrorAction SilentlyContinue).State -ne 'Enabled' ) { Start-Sleep 30; Write-Output 'InProgress' }}\""
     restart_timeout       = "10m"
   }
 
@@ -412,7 +420,7 @@ build {
 #      "${path.root}/../scripts/build/Install-NodeJS.ps1",
 #      "${path.root}/../scripts/build/Install-AndroidSDK.ps1",
 #      "${path.root}/../scripts/build/Install-PowershellAzModules.ps1",
-      "${path.root}/../scripts/build/Install-Pipx.ps1",
+#      "${path.root}/../scripts/build/Install-Pipx.ps1",
       "${path.root}/../scripts/build/Install-Git.ps1",
       "${path.root}/../scripts/build/Install-GitHub-CLI.ps1",
       "${path.root}/../scripts/build/Install-PHP.ps1",
