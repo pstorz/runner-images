@@ -1,0 +1,12 @@
+$ErrorActionPreference = 'SilentlyContinue'
+
+#Move-Item 'C:\\image\\assets\\post-gen' 'C:\\post-generation'
+#Remove-Item -Recurse 'C:\\image\\assets'
+#Move-Item 'C:\\image\\scripts\\docs-gen' 'C:\\image\\SoftwareReport'
+Move-Item -Force 'C:\\image\\scripts\\helpers' 'C:\\Program Files\\WindowsPowerShell\\Modules\\ImageHelpers'
+New-Item  -Force -Type Directory -Path 'C:\\Program Files\\WindowsPowerShell\\Modules\\TestsHelpers\\'
+Move-Item -Force 'C:\\image\\scripts\\tests\\Helpers.psm1' 'C:\\Program Files\\WindowsPowerShell\\Modules\\TestsHelpers\\TestsHelpers.psm1'
+Move-Item -Force 'C:\\image\\scripts\\tests' 'C:\\image\\tests'
+#Remove-Item -Recurse 'C:\\image\\scripts'
+Move-Item -Force 'C:\\image\\toolsets\\toolset-2022.json' 'C:\\image\\toolset.json'
+Remove-Item -Recurse 'C:\\image\\toolsets'
