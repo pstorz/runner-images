@@ -337,12 +337,12 @@ build {
 #      "${path.root}/../scripts/build/Configure-WindowsDefender.ps1",
       "${path.root}/../scripts/build/Configure-PowerShell.ps1",
       "${path.root}/../scripts/build/Install-PowerShellModules.ps1",
-      "${path.root}/../scripts/build/Install-WindowsFeatures.ps1",
+#      "${path.root}/../scripts/build/Install-WindowsFeatures.ps1",
       "${path.root}/../scripts/build/Install-Chocolatey.ps1",
-      "${path.root}/../scripts/build/Configure-BaseImage.ps1",
-      "${path.root}/../scripts/build/Configure-ImageDataFile.ps1",
+#      "${path.root}/../scripts/build/Configure-BaseImage.ps1",
+#      "${path.root}/../scripts/build/Configure-ImageDataFile.ps1",
       "${path.root}/../scripts/build/Configure-SystemEnvironment.ps1",
-      "${path.root}/../scripts/build/Configure-DotnetSecureChannel.ps1",
+#      "${path.root}/../scripts/build/Configure-DotnetSecureChannel.ps1",
     ]
   }
 
@@ -358,8 +358,8 @@ build {
      # "${path.root}/../scripts/build/Install-DockerWinCred.ps1",
      # "${path.root}/../scripts/build/Install-DockerCompose.ps1",
       "${path.root}/../scripts/build/Install-PowershellCore.ps1",
-      "${path.root}/../scripts/build/Install-WebPlatformInstaller.ps1",
-      "${path.root}/../scripts/build/Install-Runner.ps1"
+     # "${path.root}/../scripts/build/Install-WebPlatformInstaller.ps1",
+     # "${path.root}/../scripts/build/Install-Runner.ps1"
     ]
   }
 
@@ -367,15 +367,15 @@ build {
     restart_timeout = "30m"
   }
 
-  provisioner "powershell" {
-    elevated_password = "${var.install_password}"
-    elevated_user     = "${var.install_user}"
-    scripts           = [
-      "${path.root}/../scripts/build/Install-VisualStudio.ps1",
-#      "${path.root}/../scripts/build/Install-KubernetesTools.ps1"
-    ]
-    valid_exit_codes  = [0, 3010]
-  }
+  /* provisioner "powershell" { */
+  /*   elevated_password = "${var.install_password}" */
+  /*   elevated_user     = "${var.install_user}" */
+  /*   scripts           = [ */
+  /*     "${path.root}/../scripts/build/Install-VisualStudio.ps1", */
+/* #      "${path.root}/../scripts/build/Install-KubernetesTools.ps1" */
+  /*   ] */
+  /*   valid_exit_codes  = [0, 3010] */
+  /* } */
 
   provisioner "windows-restart" {
     check_registry  = true
@@ -387,7 +387,7 @@ build {
     scripts      = [
 #      "${path.root}/../scripts/build/Install-Wix.ps1",
 #      "${path.root}/../scripts/build/Install-WDK.ps1",
-      "${path.root}/../scripts/build/Install-VSExtensions.ps1",
+#      "${path.root}/../scripts/build/Install-VSExtensions.ps1",
 #      "${path.root}/../scripts/build/Install-AzureCli.ps1",
 #      "${path.root}/../scripts/build/Install-AzureDevOpsCli.ps1",
       "${path.root}/../scripts/build/Install-ChocolateyPackages.ps1",
@@ -406,13 +406,13 @@ build {
     restart_timeout = "10m"
   }
 
-  provisioner "windows-shell" {
-    inline = ["wmic product where \"name like '%%microsoft azure powershell%%'\" call uninstall /nointeractive"]
-  }
+#  provisioner "windows-shell" {
+#    inline = ["wmic product where \"name like '%%microsoft azure powershell%%'\" call uninstall /nointeractive"]
+#  }
 
   provisioner "powershell" {
     scripts = [
-      "${path.root}/../scripts/build/Install-ActionsCache.ps1",
+#      "${path.root}/../scripts/build/Install-ActionsCache.ps1",
 #      "${path.root}/../scripts/build/Install-Ruby.ps1",
 #      "${path.root}/../scripts/build/Install-PyPy.ps1",
       "${path.root}/../scripts/build/Install-Toolset.ps1",
@@ -423,7 +423,7 @@ build {
 #      "${path.root}/../scripts/build/Install-Pipx.ps1",
       "${path.root}/../scripts/build/Install-Git.ps1",
       "${path.root}/../scripts/build/Install-GitHub-CLI.ps1",
-      "${path.root}/../scripts/build/Install-PHP.ps1",
+#      "${path.root}/../scripts/build/Install-PHP.ps1",
 #      "${path.root}/../scripts/build/Install-Rust.ps1",
 #      "${path.root}/../scripts/build/Install-Sbt.ps1",
       "${path.root}/../scripts/build/Install-Chrome.ps1",
@@ -450,8 +450,12 @@ build {
 #      "${path.root}/../scripts/build/Install-Mercurial.ps1",
       "${path.root}/../scripts/build/Install-Zstd.ps1",
       "${path.root}/../scripts/build/Install-NSIS.ps1",
-      "${path.root}/../scripts/build/Install-Vcpkg.ps1",
-      "${path.root}/../scripts/build/Install-PostgreSQL.ps1",
+
+# make sure Install-Vcpkg finds git:
+      "${path.root}/../scripts_bareos/reload-machine-path.ps1",
+
+#      "${path.root}/../scripts/build/Install-Vcpkg.ps1",
+#      "${path.root}/../scripts/build/Install-PostgreSQL.ps1",
 #      "${path.root}/../scripts/build/Install-Bazel.ps1",
 #      "${path.root}/../scripts/build/Install-AliyunCli.ps1",
       "${path.root}/../scripts/build/Install-RootCA.ps1",
@@ -464,9 +468,11 @@ build {
     elevated_password = "${var.install_password}"
     elevated_user     = "${var.install_user}"
     scripts           = [
+      "${path.root}/../scripts/build/Install-Vcpkg.ps1",
+      "${path.root}/../scripts/build/Install-PostgreSQL.ps1",
       "${path.root}/../scripts/build/Install-WindowsUpdates.ps1",
-      "${path.root}/../scripts/build/Configure-DynamicPort.ps1",
-      "${path.root}/../scripts/build/Configure-GDIProcessHandleQuota.ps1",
+#      "${path.root}/../scripts/build/Configure-DynamicPort.ps1",
+#      "${path.root}/../scripts/build/Configure-GDIProcessHandleQuota.ps1",
 #      "${path.root}/../scripts/build/Configure-Shell.ps1",
       "${path.root}/../scripts/build/Configure-DeveloperMode.ps1",
 #      "${path.root}/../scripts/build/Install-LLVM.ps1"
