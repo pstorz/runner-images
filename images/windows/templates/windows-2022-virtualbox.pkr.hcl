@@ -44,7 +44,7 @@ variable "virtio_iso_path" {
 
 variable "vm_name" {
   type    = string
-  default = "Win2022_20324"
+  default = "Win2022_Bareosbuild"
 }
 
 #variable "winrm_password" {
@@ -367,15 +367,15 @@ build {
     restart_timeout = "30m"
   }
 
-  /* provisioner "powershell" { */
-  /*   elevated_password = "${var.install_password}" */
-  /*   elevated_user     = "${var.install_user}" */
-  /*   scripts           = [ */
-  /*     "${path.root}/../scripts/build/Install-VisualStudio.ps1", */
-/* #      "${path.root}/../scripts/build/Install-KubernetesTools.ps1" */
-  /*   ] */
-  /*   valid_exit_codes  = [0, 3010] */
-  /* } */
+  provisioner "powershell" {
+    elevated_password = "${var.install_password}"
+    elevated_user     = "${var.install_user}"
+    scripts           = [
+      "${path.root}/../scripts/build/Install-VisualStudio.ps1",
+#      "${path.root}/../scripts/build/Install-KubernetesTools.ps1"
+    ]
+    valid_exit_codes  = [0, 3010]
+  }
 
   provisioner "windows-restart" {
     check_registry  = true
@@ -450,9 +450,6 @@ build {
 #      "${path.root}/../scripts/build/Install-Mercurial.ps1",
       "${path.root}/../scripts/build/Install-Zstd.ps1",
       "${path.root}/../scripts/build/Install-NSIS.ps1",
-
-# make sure Install-Vcpkg finds git:
-      "${path.root}/../scripts_bareos/reload-machine-path.ps1",
 
 #      "${path.root}/../scripts/build/Install-Vcpkg.ps1",
 #      "${path.root}/../scripts/build/Install-PostgreSQL.ps1",
